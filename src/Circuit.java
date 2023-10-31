@@ -1,3 +1,6 @@
+//Alisa Kazachkova; 23394903
+//Mervin Elcin; 23313610
+
 import java.util.Scanner; //import immer ganz oben
 
 public class Circuit {
@@ -38,7 +41,8 @@ public class Circuit {
                 break; //Scheife wird unterbrochen, keine Probleme
 
             } else {
-                System.err.println("Bitte geben Sie einen possitiven Vorwiderstand ein! ");
+                System.err.println("Der Vorwiderstand soll groesser als 0 sein!");
+                System.err.println("Bitte geben Sie einen possitiven Vorwiderstand ein!");
 
             }
 
@@ -47,33 +51,44 @@ public class Circuit {
         double current = voltage / protectiveResistor;
 
         double power = Math.pow(current, 2) * protectiveResistor;  //Math.pow(current,2) = current * current
+        System.out.println("Current: " + current + " Ampere; " + power + " Watt");
 
         // 6. Steckplatte konfiguieren
 
         Scanner scMod = new Scanner(System.in);
-        System.out.println("bzzz");
+        System.out.println("Was fuer eine Schaltung haben Sie? Tippen Sie bitte 'cap' " + "fuer Kondensatoren, 'res' fuer Widersatnd oder 'short' fuer Kurzschluesse ein: " );
         String module = scMod.nextLine();
 
         switch (module) {
-            case "cap": // Nr.7
-                //Fall fuer Kondesatoren
-                do
-                }
+            case "cap":
+                    // 7. Steckplatte mit Kondensatoren
+                    double capacity1 = (EPSILON_0 * EPSILON_R * a1) / d1;
+                    double capacity2 = (EPSILON_0 * EPSILON_R * a2) / d2;
+                    System.out.println("Capacity1 " + capacity1 + " Farad");
+                    System.out.println("Capacity2 " + capacity2 + " Farad");
+
+                    double totalCapacity = capacity1 + capacity2;
+                    System.out.println("The total capacity is: " + totalCapacity + " Farad");
+                    break;
+
             case "res":
+                    // 8. Steckplatten mit Widerstaenden
+                     double totalResistance = 1 / (1 / resistor1 + 1 / resistor2);
+                     System.out.println("The total resistance is: " + totalResistance + " Ohm");
+                     break;
 
             case "short":
+                    //9. Steckplatte mit Kurzschluessen
+                System.out.println("Board shorted - No modules installed!");
+                break;
+
             default:
+                System.out.println("Bitte geben Sie entweder 'cap', 'res' oder 'short' ein! ");
+
         }
-
-
-        // 7. Steckplatte mit Kondensatoren
-
-
-        // 8. Steckplatte mit Widerstaende
-
-
-        // 9. Steckplatte mit Kurzschluessen
-
-
+        scRes.close();
+        scMod.close();
     }
+
 }
+
